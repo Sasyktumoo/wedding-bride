@@ -17,6 +17,14 @@
     "venueAddress": "Бишкек шаары",
     "venueCity": "Бишкек"
   },
+  "countdown": {
+    "title": "Үлкөн күнгө чейин",
+    "days": "Күн",
+    "hours": "Саат",
+    "minutes": "Мүнөт",
+    "seconds": "Секунд",
+    "subtitle": "Биз менен бирге бул өзгөчө күндү белгилеңиз"
+  },
   "footer": {
     "invitedBy": "Урматтоо менен той ээлери:",
     "fatherName": "Кенжебек",

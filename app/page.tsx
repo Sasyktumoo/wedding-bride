@@ -1,6 +1,8 @@
 "use client";
 
+import HeroWithPhoto from "@/components/HeroWithPhoto";
 import Hero from "@/components/Hero";
+import PhotoGallery from "@/components/PhotoGallery";
 import EventDetails from "@/components/EventDetails";
 import Countdown from "@/components/Countdown";
 import Footer from "@/components/Footer";
@@ -11,7 +13,6 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
   const [introComplete, setIntroComplete] = useState(false);
-  const [useTypewriter, setUseTypewriter] = useState(false);
 
   // Check if user has seen intro before (using sessionStorage)
   useEffect(() => {
@@ -19,14 +20,12 @@ export default function Home() {
     if (hasSeenIntro === 'true') {
       setShowIntro(false);
       setIntroComplete(true);
-      setUseTypewriter(false);
     }
   }, []);
 
   const handleIntroComplete = () => {
     setShowIntro(false);
     setIntroComplete(true);
-    setUseTypewriter(true);
     sessionStorage.setItem('hasSeenIntro', 'true');
   };
 
@@ -35,8 +34,11 @@ export default function Home() {
       {showIntro && <EnvelopeIntro onComplete={handleIntroComplete} />}
       {introComplete && (
         <>
-          <Hero showIntro={useTypewriter} />
+          <HeroWithPhoto />
+          <Hero showIntro={false} />
           <EventDetails />
+          <PhotoGallery />
+          <Countdown />
           <Footer />
         </>
       )}

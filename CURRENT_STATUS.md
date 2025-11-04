@@ -12,15 +12,18 @@
 ```
 /app
   layout.tsx          # Root layout with fonts (Inter, Playfair Display, Great Vibes) + LanguageProvider
-  page.tsx            # Main page orchestration (EnvelopeIntro → Hero → EventDetails → Footer)
+  page.tsx            # Main page orchestration (EnvelopeIntro → HeroWithPhoto → Hero → EventDetails → PhotoGallery → Countdown → Footer)
   globals.css         # Global styles, color palette, custom scrollbar
 /components
   EnvelopeIntro.tsx   # Opening animation with envelope and paper plane
   TypewriterText.tsx  # Reusable typewriter text effect component
   BackgroundMusic.tsx # Automatic background music (no controls)
   LanguageSwitcher.tsx # Language toggle button (KGZ/RU) at top-right corner
-  Hero.tsx            # Wedding invitation with proposal photo and typewriter text (i18n)
+  HeroWithPhoto.tsx   # First page: Full-screen hero with main photo.jpg + minimal event details (i18n)
+  Hero.tsx            # Second page: Text-only wedding invitation section (i18n)
+  PhotoGallery.tsx    # Photo sections with picnic.jpg and cute.jpg + quotes
   EventDetails.tsx    # Premium event details with sunset background, glassmorphism, parallax (i18n)
+  Countdown.tsx       # Real-time countdown timer with grad.jpg background (i18n)
   Footer.tsx          # Minimal footer with names (i18n)
 /contexts
   LanguageContext.tsx # Language state management and translation provider
@@ -32,7 +35,10 @@
   theme.ts            # Centralized typography theme configuration
 /public/images
   main photo.jpg      # Proposal photo used as hero background
-  grad.jpg            # Sunset gradient photo for EventDetails background
+  sunset.png          # Sunset photo for EventDetails background
+  grad.jpg            # Gradient photo for Countdown background
+  picnic.jpg          # Additional photo asset
+  cute.jpg            # Additional photo asset
 /public/audio
   wedding-background.mp3  # Royalty-free romantic background music (8.4MB)
 next.config.mjs       # Next.js config (converted from .ts)
@@ -44,20 +50,30 @@ next.config.mjs       # Next.js config (converted from .ts)
 - **Multi-language support**: Kyrgyz (default) and Russian
 - **Language switcher**: Fixed button at top-right corner
   - Animated entrance (fade-in from top)
-  - Toggle between KGZ and RU
-  - Active language highlighted with gold gradient
-  - Smooth transitions
-- **Language persistence**: Selection saved to localStorage
+  - Toggle between KGZ and RU buttons
+  - Active language highlighted with gold gradient background
+  - Smooth hover and transition effects
+  - Glassmorphic design (white/90 with backdrop blur)
+- **Language persistence**: Selection saved to localStorage, persists across page reloads
 - **Translation system**:
   - JSON-based translation files (kgz.json, ru.json)
   - React Context API for state management
-  - useLanguage hook for accessing translations
-- **Content coverage**:
-  - Hero section: Greeting, invitation message, names, honor message
-  - EventDetails: Date, time, venue information
-  - Footer: Invitation message, parents' names, gratitude message
-- **Date format**: 06.01.2026 format, Bishkek location, Restaurant "..."
-- **Parents names**: Kenzhebek & Zhyldyz (Той ээси)
+  - useLanguage custom hook for accessing translations
+  - TypeScript type safety via inferred types from JSON
+- **Content coverage** (all sections fully internationalized):
+  - **Hero section**: Greeting, invitation message, names, wedding text continuation, honor message
+  - **EventDetails**: "Save the Date" heading, full date, time, venue label, venue name, address
+  - **Countdown**: Title, time unit labels (days/hours/minutes/seconds), subtitle
+  - **Footer**: Invitation closing message, parents' names, gratitude text
+- **Wedding details**:
+  - Date: 06.01.2026 (January 6, 2026)
+  - Time: 16:00 displayed in EventDetails
+  - Countdown target: 18:00 (6:00 PM) Kyrgyz time (UTC+6)
+  - Location: Бишкек шаары / г. Бишкек
+  - Venue: Ресторан "..." (placeholder for actual restaurant name)
+- **Names**:
+  - Couple: Мырзабек & Айгерим
+  - Parents (той ээси): Кенжебек & Жылдыз
 
 ### Opening Animation Sequence
 - **Envelope intro animation** with paper plane
@@ -86,32 +102,74 @@ next.config.mjs       # Next.js config (converted from .ts)
   - Volume set to 30% by default
   - Guaranteed to start with minimal user interaction
 
-### Hero Section (Wedding Invitation)
-- **Modern two-column layout** with photo as prominent element (not background)
-- **Photo displayed as framed element** (`/images/main photo.jpg`)
-  - 3:4 aspect ratio on desktop, 4:5 on mobile (better mobile framing)
-  - Responsive rounded corners (rounded-2xl on mobile, rounded-3xl on desktop)
-  - Shadow and white ring border for depth (smaller ring on mobile)
-  - Scale-in animation on load
-  - Optimized image loading with responsive `sizes` attribute
-- **Clean gradient background** (off-white tones)
+### HeroWithPhoto Section (First Page)
+- **Full-screen hero section** with main photo.jpg as background
+- **Minimal, elegant design**:
+  - Full-viewport background image with dark overlay (opacity-40)
+  - Gradient overlay for text readability (black/60 via black/40)
+  - Content centered vertically and horizontally
+- **Content (i18n)**:
+  - **Names**: Мырзабек & Айгерим in gold script font (text-6xl → text-9xl - extra large)
+  - **Decorative divider**: Gold lines with center dot
+  - **Date**: "6 января 2026 года" / "2026-жылдын 6-январы" (text-2xl → text-4xl)
+  - **Time**: "Время: 16:00" / "Убакыт: 16:00" (text-lg → text-2xl)
+  - **Venue**: Restaurant name and city (text-lg → text-2xl)
+- **Animations**:
+  - Scale-in animation for background image
+  - Staggered fade-in for text elements
+  - Animated scroll indicator at bottom
+- **Typography**: White text on dark background for contrast
+- **Responsive**: Scales beautifully from mobile to desktop
+
+### Hero Section (Second Page - Text-Only Invitation)
+- **Clean single-column centered layout** (no photos)
+- **Text-focused design**:
+  - Maximum width container (max-w-4xl) for optimal readability
+  - All content centered on page
+  - Clean gradient background (off-white tones: faf9f6 → f5f4f1 → faf9f6)
 - **Invitation Content (i18n):**
-  - Greeting: "Урматтуу коноктор!" / "Уважаемые гости!" (text-xl on mobile → text-3xl on desktop)
-  - Invitation message with cultural respect and honor (text-base → text-2xl)
-  - Names: Мырзабек & Айгерим (text-4xl → text-7xl with fluid scaling)
-  - Honor message about sharing joy and blessings (text-base → text-xl)
+  - **Greeting**: "Урматтуу коноктор!" / "Уважаемые гости!" (text-xl → text-3xl)
+  - **Invitation message**: "Сиздерди балдарыбыз" / "С безграничным уважением приглашаем Вас на торжество..." (text-base → text-2xl)
+  - **Names**: Мырзабек & Айгерим in gold script font (text-4xl → text-7xl)
+  - **Wedding text** (Kyrgyz only): "үйлөнүү үлпөт тоюна арналган салтанатка чексиз урмат жана ызат менен чакырабыз."
+  - **Decorative divider**: Gold lines with center dot (fixed width: w-16 → w-24)
+  - **Honor message**: "Бул өзгөчө күнү биздин кубанычыбызды тең бөлүшүп..." / "В этот особенный день будем рады..."
+- **Animation system**:
+  - All text sections use fade-in animations
+  - Smooth staggered entrance animations
+  - TypewriterText component support (currently disabled by default)
 - **Design Elements:**
-  - Navy text on light background (elegant Playfair Display serif)
-  - NO blackish overlays or boxes - clean, minimalist design
-  - Two-column grid: Photo left, text right (stacked on mobile with photo AFTER text)
-  - Gold divider lines with max-width constraint on mobile
-  - Animated scroll indicator (mobile only, responsive sizing)
-  - Scroll-triggered animations (fade-in, stagger, scale)
-  - NO date/time/location in hero (moved to EventDetails section)
+  - Navy text (#2c3e50) on light background
+  - Centered text alignment throughout
+  - Gold divider lines with precise sizing
+  - Scroll-triggered animations
   - Responsive padding (py-12 sm:py-16 md:py-20)
 
+### PhotoGallery Section (Our Story in Pictures)
+- **Two full-screen photo sections** showcasing picnic.jpg and cute.jpg
+- **Section 1 - Picnic Photo**:
+  - Two-column grid: Photo left, quote right
+  - Landscape aspect ratio (4:3 on mobile, 3:2 on larger screens)
+  - Kyrgyz quote: "Жашообуз бир бири менен өткөргөн ар бир учурда кубаныч менен толот."
+  - Russian translation: "Каждое мгновение, проведённое вместе, наполняет нашу жизнь счастьем."
+  - Slide-in from left animation
+- **Section 2 - Cute Photo**:
+  - Two-column grid: Quote left, photo right (reversed layout)
+  - Landscape aspect ratio (4:3 on mobile, 3:2 on larger screens)
+  - Kyrgyz quote: "Сүйүү - бул биз менен бирге каралган келечек."
+  - Russian translation: "Любовь - это будущее, которое мы строим вместе."
+  - Slide-in from right animation
+- **Design Elements**:
+  - Alternating gradient backgrounds (off-white variations)
+  - Photos with rounded corners (rounded-2xl → rounded-3xl)
+  - Shadow and white ring borders for depth
+  - Gold decorative dividers above quotes
+  - Responsive typography (text-xl → text-3xl for quotes)
+  - Scroll-triggered animations with IntersectionObserver
+  - Stacked layout on mobile, side-by-side on desktop
+
 ### Event Details Section (Premium Design)
-- **Full-screen section with sunset background** (`/images/sunset.jpg`)
+- **Full-screen section with sunset background** (`/images/sunset.png`)
 - **Parallax scrolling effect** (desktop only for performance)
   - Disabled on mobile: `isMobile ? {} : { y }` 
   - Reduced parallax distance on mobile (5% vs 15%)
@@ -144,15 +202,42 @@ next.config.mjs       # Next.js config (converted from .ts)
   - Gradient overlays for readability (black/40-60%)
   - Frosted glass effect on cards (backdrop-blur-md)
   - Responsive typography scaling at 4 breakpoints
-  - Bottom gradient fade transition (h-24 sm:h-32)
+  - Bottom gradient fade transition to next section (h-24 sm:h-32)
+
+### Countdown Section (Wedding Countdown Timer)
+- **Full-width section with gradient background** (`/images/grad.jpg`)
+- **Real-time countdown timer** to wedding date
+  - Target: January 6, 2026 at 18:00 (6:00 PM) Kyrgyz time (UTC+6)
+  - Updates every second in real-time
+  - Timezone-aware calculation
+- **Four countdown cards** (Days, Hours, Minutes, Seconds)
+  - Glassmorphic design (white/10 with backdrop blur)
+  - Gold numbers (text-5xl → text-7xl) with bold weight
+  - White labels with uppercase tracking
+  - Grid layout: 2 columns on mobile, 4 columns on desktop
+  - Border: white/20 with shadow-2xl
+  - Responsive padding (p-6 sm:p-8)
+  - Rounded corners (rounded-xl sm:rounded-2xl)
+- **Content (i18n)**:
+  - Title: "Үлкөн күнгө чейин" / "До великого дня" (text-3xl → text-6xl)
+  - Labels: Күн/Дней, Саат/Часов, Мүнөт/Минут, Секунд/Секунд
+  - Subtitle: "Биз менен бирге бул өзгөчө күндү белгилеңиз" / "Отметьте этот особенный день вместе с нами"
+- **Design Elements:**
+  - Dark gradient overlay (black/60 to black/70) for text contrast
+  - Smooth fade-in animations with scroll trigger
+  - Staggered entrance for cards
+  - Bottom gradient fade to footer (h-24 sm:h-32 from #2c3e50)
+  - Centered content with max-width constraint
+- **Placement**: Between EventDetails and Footer sections
 
 ### Footer
 - **Invitation closing message (i18n)**: "Урматтоо менен той ээлери:" / "С уважением, той ээси:" (text-base → text-xl)
-- **Parents' names**: Кенжебек & Жылдыз (text-4xl → text-7xl, fluid scaling)
-- Decorative divider with gold accents (responsive widths)
+- **Parents' names**: Кенжебек & Жылдыз in gold script font (text-4xl → text-7xl, fluid scaling)
+- Decorative divider with gold accents (responsive widths: w-10 → w-12)
 - Copyright text with gratitude message (text-xs → text-sm)
 - Navy background (#2c3e50)
 - Responsive padding (py-12 sm:py-16 md:py-20)
+- Fade-in animation with scroll trigger
 
 ## Design System
 
@@ -270,8 +355,8 @@ npm start      # Start production server
 - Components use theme helper functions (`getScriptStyle`, `getSerifStyle`, `getBodyStyle`)
 - No hardcoded font styles in components - all controlled via theme configuration
 - **Opening sequence**: Plays once per session (tracked via sessionStorage)
-- **Typewriter effect**: Configurable speed and delay, with blinking cursor animation
-- **Hero supports dual modes**: Normal animations (returning visitors) and typewriter mode (first visit)
+- **Typewriter effect**: DISABLED - removed for better reliability and user experience
+- **Hero animations**: All sections use immediate fade-in animations (no progressive typing)
 - **Background music**: Royalty-free music from Incompetech (Creative Commons license)
 - **Music playback**: Automatic on page load, continuous loop, no visible controls
 - **Audio file size**: 8.4MB MP3, optimized for web streaming
@@ -279,4 +364,8 @@ npm start      # Start production server
 - **Language switching**: Instant language switching without page reload
 - **Default language**: Kyrgyz (kgz) - loads automatically on first visit
 - **Language persistence**: User's language choice saved to localStorage
+- **Page flow**: EnvelopeIntro → HeroWithPhoto → Hero → EventDetails → PhotoGallery → Countdown → Footer
+- **Responsive images**: All images use Next.js Image component with proper sizing
+- **Real-time updates**: Countdown timer updates every second using JavaScript intervals
+- **Photo sections**: picnic.jpg and cute.jpg displayed with romantic quotes in alternating layouts
 
