@@ -63,8 +63,10 @@ export default function EventDetails() {
           className="object-cover object-center"
           priority={false}
           sizes="100vw"
-          quality={isMobile ? 75 : 90}
+          quality={isMobile ? 60 : 75}
           loading="lazy"
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
         />
       </motion.div>
 
