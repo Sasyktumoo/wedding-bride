@@ -10,8 +10,7 @@
 
 ## Font Configuration
 - **Inter**: Latin + Cyrillic subsets (body text, practical information)
-- **Playfair Display**: Latin + Cyrillic subsets (headings, elegant text)
-- **Great Vibes**: Script font for names
+- **Playfair Display**: Latin + Cyrillic subsets (headings, elegant text, and names)
 
 ## Project Structure
 ```
@@ -272,7 +271,7 @@ next.config.mjs       # Next.js config (converted from .ts)
 ### Typography System (lib/theme.ts)
 **Centralized theme configuration for all text styles. No hardcoded fonts in components.**
 
-#### Script Font (Great Vibes - for names)
+#### Display Font (Playfair Display - for names)
 - Family: `var(--font-great-vibes), cursive`
 - Sizes: sm (3xl-4xl), md (5xl-7xl), lg (7xl-9xl), xl (8xl-10rem)
 - Colors: gold, white
@@ -303,7 +302,7 @@ next.config.mjs       # Next.js config (converted from .ts)
 - `getBodyStyle(size, weight, color, options)` - Returns complete className for body text with optional leading/tracking
 
 #### Typography Philosophy
-- **Script (Great Vibes)**: Names only - highly decorative
+- **Display (Playfair Display)**: Names only - elegant serif with Cyrillic support
 - **Serif (Playfair Display)**: Invitation messages, headings - elegant and fancy but readable
 - **Sans-serif (Inter)**: Practical details - clean and modern
 

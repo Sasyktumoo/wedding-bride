@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display, Great_Vibes } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -16,11 +16,12 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const greatVibes = Great_Vibes({
-  weight: "400",
-  subsets: ["latin"],
+const playfairForNames = Playfair_Display({
+  weight: ["400", "500", "600", "700", "800", "900"],
+  subsets: ["latin", "cyrillic"],
   variable: "--font-great-vibes",
   display: "swap",
+  style: ["normal", "italic"],
 });
 
 export const viewport: Viewport = {
@@ -53,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${greatVibes.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${playfairForNames.variable}`}>
       <body className="antialiased">
         <LanguageProvider>
           <LanguageSwitcher />
