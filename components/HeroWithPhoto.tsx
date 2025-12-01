@@ -18,7 +18,7 @@ export default function HeroWithPhoto() {
         className="absolute inset-0 z-0"
       >
         <Image
-          src="/images/main photo.jpg"
+          src="/images/main-photo.jpg"
           alt="Wedding invitation"
           fill
           priority
