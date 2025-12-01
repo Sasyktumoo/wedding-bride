@@ -25,7 +25,7 @@ export default function Countdown() {
     // Wedding date: January 6, 2026 at 18:00 (6 PM) Kyrgyz time (UTC+6)
     const calculateTimeLeft = () => {
       // Create date in Kyrgyz timezone (UTC+6)
-      const weddingDate = new Date('2026-01-06T18:00:00+06:00');
+      const weddingDate = new Date('2026-01-06T17:00:00+06:00');
       const now = new Date();
       const difference = weddingDate.getTime() - now.getTime();
 

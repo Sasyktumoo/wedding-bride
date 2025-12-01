@@ -8,19 +8,25 @@
 - Framer Motion 11.11.17
 - react-intersection-observer 9.13.1
 
+## Font Configuration
+- **Inter**: Latin + Cyrillic subsets (body text, practical information)
+- **Playfair Display**: Latin + Cyrillic subsets (headings, elegant text)
+- **Great Vibes**: Script font for names
+
 ## Project Structure
 ```
 /app
-  layout.tsx          # Root layout with fonts (Inter, Playfair Display, Great Vibes) + LanguageProvider
-  page.tsx            # Main page orchestration (EnvelopeIntro → HeroWithPhoto → Hero → EventDetails → PhotoGallery → Countdown → Footer)
+  layout.tsx          # Root layout with fonts (Inter, Playfair Display, Great Vibes) + Cyrillic support + LanguageProvider
+  page.tsx            # Main page orchestration (EnvelopeIntro → Hero → EventDetails → PhotoGallery → Countdown → Footer)
+                      # Note: HeroWithPhoto currently commented out/hidden
   globals.css         # Global styles, color palette, custom scrollbar
 /components
   EnvelopeIntro.tsx   # Opening animation with envelope and paper plane
   TypewriterText.tsx  # Reusable typewriter text effect component
   BackgroundMusic.tsx # Automatic background music (no controls)
   LanguageSwitcher.tsx # Language toggle button (KGZ/RU) at top-right corner
-  HeroWithPhoto.tsx   # First page: Full-screen hero with main photo.jpg + minimal event details (i18n)
-  Hero.tsx            # Second page: Text-only wedding invitation section (i18n)
+  HeroWithPhoto.tsx   # CURRENTLY HIDDEN: Full-screen hero with main photo.jpg + minimal event details (i18n)
+  Hero.tsx            # First page: Text-only wedding invitation section with intro heading (i18n)
   PhotoGallery.tsx    # Photo sections with picnic.jpg and cute.jpg + quotes
   EventDetails.tsx    # Premium event details with sunset background, glassmorphism, parallax (i18n)
   Countdown.tsx       # Real-time countdown timer with grad.jpg background (i18n)
@@ -61,18 +67,20 @@ next.config.mjs       # Next.js config (converted from .ts)
   - useLanguage custom hook for accessing translations
   - TypeScript type safety via inferred types from JSON
 - **Content coverage** (all sections fully internationalized):
-  - **Hero section**: Greeting, invitation message, names, wedding text continuation, honor message
-  - **EventDetails**: "Save the Date" heading, full date, time, venue label, venue name, address
+  - **Hero section**: Intro heading, greeting, invitation message, names, wedding text continuation, honor message
+  - **EventDetails**: "Save the Date" heading, full date, arrival time, ceremony start time, venue label, venue name, full address, map link
   - **Countdown**: Title, time unit labels (days/hours/minutes/seconds), subtitle
   - **Footer**: Invitation closing message, parents' names, gratitude text
 - **Wedding details**:
   - Date: 06.01.2026 (January 6, 2026)
-  - Time: 16:00 displayed in EventDetails
+  - Arrival time: 15:00 (3:00 PM)
+  - Ceremony start time: 17:00 (5:00 PM)
   - Countdown target: 18:00 (6:00 PM) Kyrgyz time (UTC+6)
-  - Location: Бишкек шаары / г. Бишкек
-  - Venue: Ресторан "..." (placeholder for actual restaurant name)
+  - Venue: Ресторан "Ак Булут" (Ak Bulut Restaurant)
+  - Full address: Микрорайон Улан 7/1, г. Бишкек / Улан Кичи Району 7/1, Бишкек шаары
+  - 2GIS map link: https://2gis.kg/bishkek/geo/70000001101581212
 - **Names**:
-  - Couple: Мырзабек & Айгерим
+  - Couple: Мырзабек & Айгерим (Russian) / Мырзабек & Aйгеримдин (Kyrgyz)
   - Parents (той ээси): Кенжебек & Жылдыз
 
 ### Opening Animation Sequence
@@ -102,42 +110,47 @@ next.config.mjs       # Next.js config (converted from .ts)
   - Volume set to 30% by default
   - Guaranteed to start with minimal user interaction
 
-### HeroWithPhoto Section (First Page)
-- **Full-screen hero section** with main photo.jpg as background
+### HeroWithPhoto Section - CURRENTLY HIDDEN
+**Note: This component is currently commented out in page.tsx and not displayed on the website.**
+
+- **Full-screen hero section** with main photo.jpg (heart3.jpg) as background
 - **Minimal, elegant design**:
   - Full-viewport background image with dark overlay (opacity-40)
   - Gradient overlay for text readability (black/60 via black/40)
   - Content centered vertically and horizontally
-- **Content (i18n)**:
+- **Content (i18n)** (when enabled):
   - **Names**: Мырзабек & Айгерим in gold script font (text-6xl → text-9xl - extra large)
   - **Decorative divider**: Gold lines with center dot
   - **Date**: "6 января 2026 года" / "2026-жылдын 6-январы" (text-2xl → text-4xl)
-  - **Time**: "Время: 16:00" / "Убакыт: 16:00" (text-lg → text-2xl)
-  - **Venue**: Restaurant name and city (text-lg → text-2xl)
+  - **Arrival time**: "Время сбора: 15:00" / "Чакыруу убактысы: 15:00" (text-lg → text-2xl)
+  - **Ceremony start**: "Начало торжества: 17:00" / "Башталуу убактысы: 17:00" (text-lg → text-2xl, with mt-2 spacing)
+  - **Venue**: "Ресторан 'Ак Булут'" and full address (text-lg → text-2xl)
 - **Animations**:
   - Scale-in animation for background image
   - Staggered fade-in for text elements
   - Animated scroll indicator at bottom
-- **Typography**: White text on dark background for contrast
+- **Typography**: White text on dark background with strong text shadows for contrast
 - **Responsive**: Scales beautifully from mobile to desktop
 
-### Hero Section (Second Page - Text-Only Invitation)
+### Hero Section (First Page - Text-Only Invitation)
 - **Clean single-column centered layout** (no photos)
 - **Text-focused design**:
   - Maximum width container (max-w-4xl) for optimal readability
   - All content centered on page
   - Clean gradient background (off-white tones: faf9f6 → f5f4f1 → faf9f6)
 - **Invitation Content (i18n):**
-  - **Greeting**: "Урматтуу коноктор!" / "Уважаемые гости!" (text-xl → text-3xl)
-  - **Invitation message**: "Сиздерди балдарыбыз" / "С безграничным уважением приглашаем Вас на торжество..." (text-base → text-2xl)
-  - **Names**: Мырзабек & Айгерим in gold script font (text-4xl → text-7xl)
+  - **Intro heading**: "Чакыруу барагы" / "Приглашение на свадьбу" (text-xl → text-3xl, heading-serif font)
+  - **Greeting**: Currently empty in both languages (text-xl → text-3xl)
+  - **Invitation message**: "Сиздерди, балдарыбыз" / "С безграничным уважением приглашаем Вас на торжество, посвящённое свадьбе наших детей —" (text-base → text-2xl)
+  - **Names**: Мырзабек & Aйгеримдин (Kyrgyz) / Мырзабек & Айгерим (Russian) in gold script font (text-4xl → text-7xl)
   - **Wedding text** (Kyrgyz only): "үйлөнүү үлпөт тоюна арналган салтанатка чексиз урмат жана ызат менен чакырабыз."
   - **Decorative divider**: Gold lines with center dot (fixed width: w-16 → w-24)
   - **Honor message**: "Бул өзгөчө күнү биздин кубанычыбызды тең бөлүшүп..." / "В этот особенный день будем рады..."
 - **Animation system**:
   - All text sections use fade-in animations
-  - Smooth staggered entrance animations
+  - Smooth staggered entrance animations with updated text stages (1-6 to accommodate new intro element)
   - TypewriterText component support (currently disabled by default)
+  - Progressive reveal: Intro → Greeting → Invitation → Names → Wedding Text → Divider → Honor Message
 - **Design Elements:**
   - Navy text (#2c3e50) on light background
   - Centered text alignment throughout
@@ -187,16 +200,25 @@ next.config.mjs       # Next.js config (converted from .ts)
   - Unified glassmorphism card (bg-black/60 with backdrop blur)
   - Gold gradient calendar icon (w-16 mobile → w-24 desktop)
   - "Датаны сактаңыз" / "Сохраните дату" heading (text-2xl → text-4xl)
-  - 2026-жылдын 6-январы / 6 января 2026 года (text-xl → text-3xl)
-  - Убакыт: 16:00 / Время: 16:00 (text-lg → text-2xl)
+  - 2026-жылдын 6-январы / 6 января 2026 года (text-lg → text-2xl, font-light)
+  - Чакыруу убактысы: 15:00 / Время сбора: 15:00 (text-lg → text-2xl, font-light)
+  - Башталуу убактысы: 17:00 / Начало торжества: 17:00 (text-lg → text-2xl, font-light)
+  - All content text now uses consistent sizing: text-lg sm:text-xl md:text-2xl font-light
   - Responsive padding (p-6 sm:p-8 md:p-10)
   - Responsive border radius (rounded-xl sm:rounded-2xl)
 - **Card 2: Venue Information (i18n)**
   - Same responsive treatment as Card 1
   - Gold gradient location icon with border
   - "Дарек" / "Адрес" heading (text-2xl → text-4xl)
-  - Ресторан "..." (text-lg → text-2xl)
-  - Бишкек шаары / г. Бишкек (text-base → text-xl)
+  - Ресторан "Ак Булут" (text-lg → text-2xl, font-light)
+  - Микрорайон Улан 7/1, г. Бишкек / Улан Кичи Району 7/1, Бишкек шаары (text-lg → text-2xl, font-light)
+  - All content text now uses consistent sizing: text-lg sm:text-xl md:text-2xl font-light
+  - **Interactive 2GIS map link button**:
+    - Text: "Картада көрүү" / "Посмотреть на карте"
+    - Gold border and text with hover effect
+    - Map icon with responsive sizing (w-4 h-4 sm:w-5 sm:h-5)
+    - Opens in new tab: https://2gis.kg/bishkek/geo/70000001101581212
+    - Styling: border, rounded-lg, px-4 py-2, transition on hover
 - **Design Elements:**
   - Clean card-based layout (no scattered backgrounds)
   - Gradient overlays for readability (black/40-60%)
@@ -364,8 +386,43 @@ npm start      # Start production server
 - **Language switching**: Instant language switching without page reload
 - **Default language**: Kyrgyz (kgz) - loads automatically on first visit
 - **Language persistence**: User's language choice saved to localStorage
-- **Page flow**: EnvelopeIntro → HeroWithPhoto → Hero → EventDetails → PhotoGallery → Countdown → Footer
+- **Cyrillic support**: Both Inter and Playfair Display fonts include Cyrillic subset for proper Russian and Kyrgyz text rendering
+- **Page flow**: EnvelopeIntro → Hero → EventDetails → PhotoGallery → Countdown → Footer (HeroWithPhoto currently hidden)
 - **Responsive images**: All images use Next.js Image component with proper sizing
 - **Real-time updates**: Countdown timer updates every second using JavaScript intervals
 - **Photo sections**: picnic.jpg and cute.jpg displayed with romantic quotes in alternating layouts
+
+## Recent Changes (Latest Commit)
+### Commit: "change text+add music+add address link"
+
+**Font Updates:**
+- Added Cyrillic subset support to Inter and Playfair Display fonts for proper Russian and Kyrgyz text rendering
+
+**Page Layout:**
+- HeroWithPhoto component temporarily hidden (commented out in page.tsx)
+- Website now starts directly with Hero (invitation text) section
+
+**Hero Section Enhancements:**
+- Added new `intro` field: "Чакыруу барагы" / "Приглашение на свадьбу" (displays before greeting)
+- Updated text flow with new animation stages (1-6) to accommodate intro element
+- Updated Kyrgyz bride name: "Aйгеримдин" (possessive form)
+- Greeting field now empty in current version
+
+**EventDetails Improvements:**
+- **Two-time system implemented**: 
+  - Arrival time (15:00): "Чакыруу убактысы" / "Время сбора"
+  - Ceremony start (17:00): "Башталуу убактысы" / "Начало торжества"
+- **Consistent typography**: All content text unified to `text-lg sm:text-xl md:text-2xl font-light`
+- **Actual venue details added**: 
+  - Restaurant name: "Ак Булут"
+  - Full address: "Микрорайон Улан 7/1, г. Бишкек" / "Улан Кичи Району 7/1, Бишкек шаары"
+- **Interactive 2GIS map link**: 
+  - Clickable button: "Картада көрүү" / "Посмотреть на карте"
+  - Direct link to venue location: https://2gis.kg/bishkek/geo/70000001101581212
+  - Styled with gold border, map icon, and hover effects
+
+**Translation Updates:**
+- Both locale files (kgz.json, ru.json) updated with all new fields
+- Added `intro`, `time2`, `venueMapLink`, and `viewOnMap` keys
+- Updated existing text content for accuracy
 
