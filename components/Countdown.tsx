@@ -48,15 +48,15 @@ export default function Countdown() {
   }, []);
 
   return (
-    <section className="relative min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center py-16 sm:py-20 md:py-24 overflow-hidden">
+    <section className="relative min-h-[60vh] sm:min-h-[70vh] flex items-end justify-center py-16 sm:py-20 md:py-24 pb-20 sm:pb-24 md:pb-32 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70 z-10" />
         <Image
           src="/images/grad.jpg"
           alt="Countdown background"
           fill
-          className="object-cover object-center"
+          className="object-cover object-top"
           priority={false}
           sizes="100vw"
           quality={70}
