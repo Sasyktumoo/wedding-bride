@@ -28,7 +28,7 @@
   - Update `FAMILY_SIDE` in `family.config.ts` before pushing to each repository
   - Push to `origin` (wedding-groom) for groom's version
   - Push to `bride` (wedding-bride) for bride's version
-- **Current Configuration**: Set to 'bride' (Кубанычбек & Венера)
+- **Current Configuration**: Set to 'groom' (Кенжебек & Жылдыз)
 
 ## Project Structure
 ```
