@@ -56,7 +56,7 @@ export default function Countdown() {
           src="/images/grad.jpg"
           alt="Countdown background"
           fill
-          className="object-cover object-top"
+          className="object-contain object-center"
           priority={false}
           sizes="100vw"
           quality={70}
