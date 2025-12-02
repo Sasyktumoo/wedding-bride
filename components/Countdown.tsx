@@ -48,26 +48,28 @@ export default function Countdown() {
   }, []);
 
   return (
-    <section className="relative min-h-[150vh] sm:min-h-[120vh] md:min-h-[140vh] flex items-end justify-center pt-32 pb-12 sm:py-20 md:py-24 sm:pb-24 md:pb-32 overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70 z-10" />
-        <Image
-          src="/images/grad.jpg"
-          alt="Countdown background"
-          fill
-          className="object-cover object-[center_35%]"
-          priority={false}
-          sizes="100vw"
-          quality={70}
-          loading="lazy"
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAABAAEDAREAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/AA//2Q=="
-        />
-      </div>
+    <>
+      {/* Photo Section */}
+      <section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/grad.jpg"
+            alt="Graduation photo"
+            fill
+            className="object-contain object-center"
+            priority={false}
+            sizes="100vw"
+            quality={70}
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAABAAEDAREAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/AA//2Q=="
+          />
+        </div>
+      </section>
 
-      {/* Content */}
-      <div ref={ref} className="relative z-20 container mx-auto px-4 sm:px-6 max-w-6xl">
+      {/* Countdown Section with Gradient */}
+      <section className="relative bg-gradient-to-b from-[#faf9f6] via-[#3a4d5f] to-[#2c3e50] py-16 sm:py-20 md:py-24">
+        <div ref={ref} className="relative z-20 container mx-auto px-4 sm:px-6 max-w-6xl">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -137,10 +139,8 @@ export default function Countdown() {
           </motion.p>
         </motion.div>
       </div>
-
-      {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-t from-[#2c3e50] to-transparent z-10" />
     </section>
+    </>
   );
 }
 
