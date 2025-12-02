@@ -15,13 +15,48 @@ export default function Hero({ showIntro = false }: HeroProps) {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center py-12 sm:py-16 md:py-20 bg-gradient-to-b from-[#faf9f6] via-[#f5f4f1] to-[#faf9f6]">
+    <section className="relative min-h-screen flex items-center justify-center py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#f8f6f0] via-[#faf8f2] to-[#f5f3ed] overflow-hidden">
+      {/* Elegant Background Decorations */}
+      <div className="absolute inset-0 opacity-30">
+        {/* Top Left Floral Corner */}
+        <div className="absolute top-0 left-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
+          <svg viewBox="0 0 200 200" className="w-full h-full text-[#d4af37]/40">
+            <path d="M0,50 Q20,30 40,50 Q60,70 50,90 Q40,110 20,100 Q0,90 0,50 M10,60 Q30,45 50,60" 
+                  fill="none" stroke="currentColor" strokeWidth="0.5"/>
+            <path d="M20,20 Q40,0 60,20 Q80,40 70,60 Q60,80 40,70 Q20,60 20,20" 
+                  fill="none" stroke="currentColor" strokeWidth="0.5"/>
+            <circle cx="30" cy="40" r="2" fill="currentColor" opacity="0.6"/>
+            <circle cx="50" cy="30" r="2" fill="currentColor" opacity="0.6"/>
+            <path d="M5,80 Q15,60 25,80 L20,100 L10,100 Z" 
+                  fill="none" stroke="currentColor" strokeWidth="0.5"/>
+          </svg>
+        </div>
+        
+        {/* Bottom Right Floral Corner */}
+        <div className="absolute bottom-0 right-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 transform rotate-180">
+          <svg viewBox="0 0 200 200" className="w-full h-full text-[#d4af37]/40">
+            <path d="M0,50 Q20,30 40,50 Q60,70 50,90 Q40,110 20,100 Q0,90 0,50 M10,60 Q30,45 50,60" 
+                  fill="none" stroke="currentColor" strokeWidth="0.5"/>
+            <path d="M20,20 Q40,0 60,20 Q80,40 70,60 Q60,80 40,70 Q20,60 20,20" 
+                  fill="none" stroke="currentColor" strokeWidth="0.5"/>
+            <circle cx="30" cy="40" r="2" fill="currentColor" opacity="0.6"/>
+            <circle cx="50" cy="30" r="2" fill="currentColor" opacity="0.6"/>
+          </svg>
+        </div>
+
+        {/* Delicate Pattern Overlay */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                           radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.03) 0%, transparent 50%)`
+        }}></div>
+      </div>
+      {/* Content */}
       <motion.div
         variants={staggerContainer}
         initial={showIntro ? { opacity: 0, y: 20 } : "hidden"}
         animate={showIntro ? { opacity: 1, y: 0 } : "visible"}
         transition={showIntro ? { duration: 1.5, delay: 0.5, ease: "easeOut" } : {}}
-        className="container mx-auto px-4 sm:px-6 max-w-7xl"
+        className="relative z-10 container mx-auto px-4 sm:px-6 max-w-7xl"
       >
         <div className="max-w-4xl mx-auto text-center">
           
