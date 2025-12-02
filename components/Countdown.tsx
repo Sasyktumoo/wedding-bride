@@ -50,13 +50,13 @@ export default function Countdown() {
   return (
     <>
       {/* Photo Section */}
-      <section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[80vh] sm:min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/grad.jpg"
             alt="Graduation photo"
             fill
-            className="object-contain object-center"
+            className="object-cover object-center"
             priority={false}
             sizes="100vw"
             quality={70}
