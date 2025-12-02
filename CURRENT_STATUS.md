@@ -31,7 +31,7 @@
   PhotoGallery.tsx    # Photo section with cute.jpg + quote (picnic.jpg section currently hidden)
   EventDetails.tsx    # Premium event details with sunset background, glassmorphism, parallax (i18n)
   Countdown.tsx       # Real-time countdown timer with grad.jpg background (i18n)
-  Footer.tsx          # Minimal footer with names (i18n)
+  Footer.tsx          # Elegant footer with golden decorations, sparkling effects, and parents' names (i18n)
 /contexts
   LanguageContext.tsx # Language state management and translation provider
   MusicContext.tsx    # Music state management (mute/unmute control)
@@ -260,13 +260,26 @@ next.config.mjs       # Next.js config (converted from .ts)
 - **Placement**: Between EventDetails and Footer sections
 
 ### Footer
-- **Invitation closing message (i18n)**: "Урматтоо менен той ээлери:" / "С уважением, той ээси:" (text-base → text-xl)
-- **Parents' names**: Кенжебек & Жылдыз in gold script font (text-4xl → text-7xl, fluid scaling)
-- Decorative divider with gold accents (responsive widths: w-10 → w-12)
-- Copyright text with gratitude message (text-xs → text-sm) - displays "© [gratitude text]" without year
-- Navy background (#2c3e50)
-- Responsive padding (py-12 sm:py-16 md:py-20)
-- Fade-in animation with scroll trigger
+- **Elegant design with golden decorations** matching the Hero section aesthetic
+- **Background**: Dark gradient (from-[#2c3e50] via-[#1e2d3d] to-[#0f1419]) with smooth transition from Countdown
+- **Sparkling effect**: 40 animated golden dots with varying opacity and scale (subtle, elegant)
+- **Top decorative border**:
+  - Gold gradient lines extending from center
+  - Rotating golden diamond in center
+  - Smooth scale animation on appear
+- **Invitation closing message (i18n)**: "Урматтоо менен той ээлери:" / "С уважением, той ээси:" (text-lg → text-2xl)
+- **Parents' names in decorative frame**:
+  - Names: Кенжебек & Жылдыз in gold script font (text-4xl → text-7xl)
+  - Frosted glass background with subtle border (bg-white/5 backdrop-blur-sm)
+  - Corner decorations with gold borders
+  - Ampersand in white/40 for subtle separation
+- **Bottom decorative divider**:
+  - Gold gradient lines with three dots
+  - Varying opacity for depth (60%, 40%, 60%)
+- **Gratitude message**: White/60 text with letter spacing (text-sm → text-base)
+- **Generous padding** (py-16 sm:py-20 md:py-28) for elegant breathing room
+- **Bottom elegant fade**: Gradient to black for smooth closure
+- **Staggered fade-in animations** with scroll trigger
 
 ## Design System
 
