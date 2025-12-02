@@ -36,7 +36,7 @@ export default function Hero({ showIntro = false }: HeroProps) {
               className="mb-6 sm:mb-8"
             >
               {showIntro ? (
-                <h2 className="heading-script text-3xl sm:text-4xl md:text-5xl text-[#2c3e50] mb-0 italic">
+                <h2 className="heading-serif text-3xl sm:text-4xl md:text-5xl text-[#2c3e50] mb-0 font-semibold tracking-wider uppercase">
                   <TypewriterText 
                     text={t.hero.intro} 
                     delay={1000}
@@ -45,7 +45,7 @@ export default function Hero({ showIntro = false }: HeroProps) {
                   />
                 </h2>
               ) : (
-                <h2 className="heading-script text-3xl sm:text-4xl md:text-5xl text-[#2c3e50] mb-0 italic">
+                <h2 className="heading-serif text-3xl sm:text-4xl md:text-5xl text-[#2c3e50] mb-0 font-semibold tracking-wider uppercase">
                   {t.hero.intro}
                 </h2>
               )}
@@ -61,7 +61,7 @@ export default function Hero({ showIntro = false }: HeroProps) {
                 className="mb-4 sm:mb-6"
               >
                 {showIntro ? (
-                  <p className="heading-serif text-xl sm:text-2xl md:text-3xl font-normal text-[#2c3e50] mb-0 tracking-wide">
+                  <p className="heading-serif text-xl sm:text-2xl md:text-3xl font-medium text-[#2c3e50] mb-0 tracking-wide">
                     <TypewriterText 
                       text={t.hero.greeting} 
                       delay={300}
@@ -70,7 +70,7 @@ export default function Hero({ showIntro = false }: HeroProps) {
                     />
                   </p>
                 ) : (
-                  <p className="heading-serif text-xl sm:text-2xl md:text-3xl font-normal text-[#2c3e50] mb-0 tracking-wide">
+                  <p className="heading-serif text-xl sm:text-2xl md:text-3xl font-medium text-[#2c3e50] mb-0 tracking-wide">
                     {t.hero.greeting}
                   </p>
                 )}
@@ -87,7 +87,7 @@ export default function Hero({ showIntro = false }: HeroProps) {
                 className="mb-4 sm:mb-6 md:mb-8"
               >
                 {showIntro ? (
-                  <p className="heading-serif text-base sm:text-lg md:text-xl lg:text-2xl font-light text-[#2c3e50] leading-relaxed mb-0">
+                  <p className="heading-serif text-base sm:text-lg md:text-xl lg:text-2xl font-normal text-[#2c3e50] leading-relaxed mb-0 tracking-wide">
                     <TypewriterText 
                       text={t.hero.invitation} 
                       delay={300}
@@ -96,7 +96,7 @@ export default function Hero({ showIntro = false }: HeroProps) {
                     />
                   </p>
                 ) : (
-                  <p className="heading-serif text-base sm:text-lg md:text-xl lg:text-2xl font-light text-[#2c3e50] leading-relaxed mb-0">
+                  <p className="heading-serif text-base sm:text-lg md:text-xl lg:text-2xl font-normal text-[#2c3e50] leading-relaxed mb-0 tracking-wide">
                     {t.hero.invitation}
                   </p>
                 )}
@@ -139,7 +139,7 @@ export default function Hero({ showIntro = false }: HeroProps) {
                 className="mb-4 sm:mb-6 md:mb-8"
               >
                 {showIntro ? (
-                  <p className="heading-serif text-base sm:text-lg md:text-xl lg:text-2xl font-light text-[#2c3e50] leading-relaxed mb-0">
+                  <p className="heading-serif text-base sm:text-lg md:text-xl lg:text-2xl font-normal text-[#2c3e50] leading-relaxed mb-0 tracking-wide">
                     <TypewriterText 
                       text={t.hero.weddingText} 
                       delay={300}
@@ -148,7 +148,7 @@ export default function Hero({ showIntro = false }: HeroProps) {
                     />
                   </p>
                 ) : (
-                  <p className="heading-serif text-base sm:text-lg md:text-xl lg:text-2xl font-light text-[#2c3e50] leading-relaxed mb-0">
+                  <p className="heading-serif text-base sm:text-lg md:text-xl lg:text-2xl font-normal text-[#2c3e50] leading-relaxed mb-0 tracking-wide">
                     {t.hero.weddingText}
                   </p>
                 )}
@@ -180,7 +180,7 @@ export default function Hero({ showIntro = false }: HeroProps) {
                 transition={showIntro ? { delay: 0.3, duration: 0.5 } : undefined}
               >
                 {showIntro ? (
-                  <p className="heading-serif text-base sm:text-lg md:text-xl font-light text-[#2c3e50] leading-relaxed mb-0">
+                  <p className="heading-serif text-base sm:text-lg md:text-xl font-normal text-[#2c3e50] leading-relaxed mb-0 tracking-wide italic">
                     <TypewriterText 
                       text={t.hero.honor} 
                       delay={300}
@@ -188,7 +188,7 @@ export default function Hero({ showIntro = false }: HeroProps) {
                     />
                   </p>
                 ) : (
-                  <p className="heading-serif text-base sm:text-lg md:text-xl font-light text-[#2c3e50] leading-relaxed mb-0">
+                  <p className="heading-serif text-base sm:text-lg md:text-xl font-normal text-[#2c3e50] leading-relaxed mb-0 tracking-wide italic">
                     {t.hero.honor}
                   </p>
                 )}
