@@ -19,39 +19,14 @@ export default function Hero({ showIntro = false }: HeroProps) {
       
       {/* Sparkling Gold Dots */}
       <div className="absolute inset-0">
-        {/* Generate multiple sparkling dots */}
-        {[
-          { top: '10%', left: '15%', size: 2, delay: 0, duration: 2 },
-          { top: '15%', left: '25%', size: 1.5, delay: 0.5, duration: 2.5 },
-          { top: '20%', left: '80%', size: 2, delay: 1, duration: 2.2 },
-          { top: '25%', left: '70%', size: 1, delay: 1.5, duration: 2.8 },
-          { top: '30%', left: '10%', size: 1.5, delay: 0.8, duration: 2.4 },
-          { top: '35%', left: '85%', size: 2, delay: 0.3, duration: 2.6 },
-          { top: '40%', left: '20%', size: 1, delay: 1.2, duration: 2.3 },
-          { top: '45%', left: '90%', size: 1.5, delay: 0.6, duration: 2.7 },
-          { top: '50%', left: '5%', size: 2, delay: 1.8, duration: 2.1 },
-          { top: '55%', left: '75%', size: 1, delay: 0.4, duration: 2.9 },
-          { top: '60%', left: '30%', size: 1.5, delay: 1.4, duration: 2.5 },
-          { top: '65%', left: '85%', size: 2, delay: 0.2, duration: 2.3 },
-          { top: '70%', left: '15%', size: 1, delay: 1.6, duration: 2.6 },
-          { top: '75%', left: '65%', size: 1.5, delay: 0.9, duration: 2.4 },
-          { top: '80%', left: '40%', size: 2, delay: 1.1, duration: 2.2 },
-          { top: '85%', left: '90%', size: 1, delay: 0.7, duration: 2.8 },
-          { top: '12%', left: '50%', size: 1.5, delay: 1.3, duration: 2.7 },
-          { top: '28%', left: '45%', size: 1, delay: 0.5, duration: 2.5 },
-          { top: '42%', left: '60%', size: 2, delay: 1.7, duration: 2.3 },
-          { top: '58%', left: '55%', size: 1.5, delay: 0.8, duration: 2.6 },
-          { top: '72%', left: '25%', size: 1, delay: 1.5, duration: 2.4 },
-          { top: '88%', left: '50%', size: 2, delay: 0.4, duration: 2.8 },
-          { top: '18%', left: '35%', size: 1, delay: 1.9, duration: 2.2 },
-          { top: '38%', left: '95%', size: 1.5, delay: 0.6, duration: 2.9 },
-          { top: '52%', left: '12%', size: 2, delay: 1.2, duration: 2.1 },
-          { top: '68%', left: '78%', size: 1, delay: 0.3, duration: 2.7 },
-          { top: '22%', left: '92%', size: 1.5, delay: 1.4, duration: 2.5 },
-          { top: '48%', left: '8%', size: 1, delay: 0.7, duration: 2.3 },
-          { top: '78%', left: '82%', size: 2, delay: 1.6, duration: 2.6 },
-          { top: '32%', left: '52%', size: 1.5, delay: 0.2, duration: 2.4 },
-        ].map((dot, i) => (
+        {/* Generate lots of sparkling dots */}
+        {Array.from({ length: 80 }, (_, i) => ({
+          top: `${Math.floor(Math.random() * 95) + 3}%`,
+          left: `${Math.floor(Math.random() * 95) + 3}%`,
+          size: [1, 1.5, 2][Math.floor(Math.random() * 3)],
+          delay: Math.random() * 2,
+          duration: 2 + Math.random() * 1.5,
+        })).map((dot, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full bg-[#d4af37]"
