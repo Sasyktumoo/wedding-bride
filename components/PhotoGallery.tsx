@@ -18,8 +18,8 @@ export default function PhotoGallery() {
       ru: "Каждое мгновение, проведённое вместе, наполняет нашу жизнь счастьем."
     },
     cute: {
-      kgz: "Сүйүү-бул биз бирге кура турган келечек.",
-      ru: "Любовь - это будущее, которое мы строим вместе."
+      kgz: "Сүйүү - бул биз бирге кура турган келечек",
+      ru: "Любовь - это будущее, которое мы строим вместе"
     }
   };
 
@@ -91,7 +91,7 @@ export default function PhotoGallery() {
                 </div>
                 
                 <blockquote className="heading-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-[#2c3e50] leading-relaxed italic">
-                  &ldquo;{quotes.cute[language]}&rdquo;
+                  &ldquo;{quotes.cute[language]}&rdquo;.
                 </blockquote>
               </div>
             </motion.div>
